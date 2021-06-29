@@ -62,6 +62,7 @@
             </div>
             <div class="form-group">
                 <label>TOTAL BAYAR</label>
+                
                 <input type="text" class="form-control" value="{{number_format($data->total)}}" readonly>
                 <input type="hidden" class="form-control" name="total" value="{{$data->total}}" readonly>
             </div>

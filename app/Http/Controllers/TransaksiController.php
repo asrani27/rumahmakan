@@ -29,7 +29,6 @@ class TransaksiController extends Controller
     public function bayar($id)
     {
         $checkTransaksi = Transaksi::where('meja_id', $id)->where('status_bayar',0)->first();
-        
         if($checkTransaksi == null){
             toastr()->error('Meja ini Tidak ada Pesanan');
             return back();
@@ -39,6 +38,8 @@ class TransaksiController extends Controller
                 $item->total = $item->harga * $item->jumlah;
                 return $item;
             });
+            
+        //dd($detail);
             return view('admin.transaksi.bayar',compact('data','detail'));
         }
     }

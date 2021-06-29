@@ -1,14 +1,14 @@
 @extends('front.app')
 
 @section('title')
-Masukkan Nama Anda Dan Pilih Meja Yang Tersedia
+Pilih Meja Yang Tersedia
 @endsection
 
 @section('content')
     
 <div class="row">
     <div class="col-lg-12">
-        <form method="post" action="/pesansekarang">
+        <form method="post" action="/pesansekarang2">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -38,7 +38,7 @@ Masukkan Nama Anda Dan Pilih Meja Yang Tersedia
                 <p class="card-text">
                     <button type="submit" class="btn btn-primary btn-block"><strong>PESAN MEJA</strong></button>
                     
-                    <a href="/logout" class="btn btn-secondary btn-block"><strong>KELUAR</strong></a>
+                    <a href="/home" class="btn btn-secondary btn-block"><strong>KEMBALI</strong></a>
                 </p>
                 </div>
             </div><!-- /.card -->

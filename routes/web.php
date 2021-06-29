@@ -56,7 +56,10 @@ Route::group(['middleware' => ['auth', 'role:kasir']], function () {
 Route::group(['middleware' => ['auth', 'role:pembeli']], function () {
     Route::get('/pesansekarang/{id}/add', [PesananController::class, 'storeMakanan']);
     Route::get('/home/batalkan', [PesananController::class, 'batalkan']);
-    Route::post('/pesansekarang', [PesananController::class, 'storePelanggan']);
+    //Route::get('/pesansekarang', [PesananController::class, 'pesananPelanggan']);
+    Route::post('/pesansekarang2', [PesananController::class, 'storePelanggan']);
+    Route::get('/pesansekarang2', [PesananController::class, 'dataPesananPelanggan']);
     Route::post('/home/selesai', [PesananController::class, 'selesaiPesan']);
     Route::get('/pesanan/selesai', [PesananController::class, 'dataPesanan']);
+    Route::get('/home/pesansekarang', [PesananController::class, 'dataPesananPelanggan']);
 });

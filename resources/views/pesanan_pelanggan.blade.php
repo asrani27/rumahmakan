@@ -49,8 +49,15 @@ Pilih Makanan Dan minuman
                 @csrf
             <div class="card-body">
                 <strong>NAMA  : {{Auth::user()->name}}</strong><br/>
-                <strong>MEJA NO : {{Auth::user()->meja->nama}}</strong><br/>
-                <input type="hidden" name="meja_id" value="{{Auth::user()->meja->id}}">
+                <strong>MEJA NO : 
+                    <select name="meja_id" required>
+                        <option value="">-Pilih-</option>
+                        @foreach ($meja as $item)
+                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                        @endforeach
+                    </select>
+                </strong><br/>
+                {{-- <input type="hidden" name="meja_id" value="{{$meja_id}}"> --}}
                 <input type="hidden" name="nama_pembeli" value="{{Auth::user()->name}}">
                 <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
                 <input type="hidden" name="total" value="{{$sementara->sum('total')}}">
@@ -86,6 +93,7 @@ Pilih Makanan Dan minuman
                 </table> 
                 <button type="submit" class="btn btn-sm btn-info btn-block">SELESAI</button>
                 <a href="/home/batalkan" class="btn btn-sm btn-secondary btn-block">BATALKAN</a>
+                <a href="/home" class="btn btn-sm btn-danger btn-block">KEMBALI</a>
             </div>
             </form>
         </div>

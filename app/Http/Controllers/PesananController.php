@@ -29,20 +29,30 @@ class PesananController extends Controller
             // $attr['nama_pembeli'] = $req->nama;
             // $attr['total'] = 0;
             // Transaksi::create($attr);
-
+            
             //Ubah status meja menjadi di pesan
             Meja::find($req->meja_id)->update([
                 'status' => 1,
                 'users_id' => Auth::user()->id,
             ]);
             DB::commit();
+            $nomor_meja = Meja::find($req->meja_id)->nama;
+            $meja_id =$req->meja_id;
             $makanan = Makanan::get();
             $sementara = Sementara::where('users_id', Auth::user()->id)->get();
-            return view('pesanan_pelanggan',compact('makanan','sementara'));
+            return view('pesanan_pelanggan',compact('makanan','sementara','nomor_meja','meja_id'));
         } catch (\Exception $e) {
             DB::rollback();
             return back();
         }
+    }
+
+    public function pesananPelanggan()
+    {
+        // $makanan = Makanan::get();
+        // $sementara = Sementara::where('users_id', Auth::user()->id)->get();
+        $data = Transaksi::where('users_id', Auth::user()->id)->get();
+        return view('daftar_pelanggan',compact('data'));
     }
 
     public function loginPelanggan()
@@ -57,13 +67,24 @@ class PesananController extends Controller
         }
     }
 
+    public function dataPesananPelanggan()
+    {
+        // dd('d');
+        // $nomor_meja = Meja::find($req->meja_id)->nama;
+        // $meja_id =$req->meja_id;
+        $meja = Meja::where('status',0)->get();
+        $makanan = Makanan::get();
+        $sementara = Sementara::where('users_id', Auth::user()->id)->get();
+        return view('pesanan_pelanggan',compact('makanan','sementara','meja'));
+    }
+
     public function batalkan()
     {
         //Hapus pesanan meja
-        Auth::user()->meja->update([
-            'users_id' => null,
-            'status' => 0
-        ]);
+        // Auth::user()->meja->update([
+        //     'users_id' => null,
+        //     'status' => 0
+        // ]);
 
         Sementara::where('users_id', Auth::user()->id)->get()->map(function($item){
             $item->delete();
@@ -82,26 +103,30 @@ class PesananController extends Controller
         $check = Sementara::where('users_id', Auth::user()->id)->where('makanan_id', $id)->first();
         if($check == null){
             Sementara::create($attr);
+            return back();
         }else{
             $check->jumlah = $check->jumlah + 1;
             $check->save();
+            return back();
         }
         
-        return back();
     }
 
     public function selesaiPesan(Request $req)
     {
-        $pesanan = Sementara::where('users_id', $req->users_id)->get();
-
+        $pesanan = Sementara::where('users_id', $req->users_id)->get()->map(function($item){
+            $item->total = $item->jumlah * $item->harga;
+            return $item;
+        });
+        
         DB::beginTransaction();
-
+        
         try {
             $t = new Transaksi;
             $t->meja_id      = $req->meja_id;
             $t->users_id     = $req->users_id;
             $t->nama_pembeli = $req->nama_pembeli;
-            $t->total        = $req->total;
+            $t->total        = $pesanan->sum('total');
             $t->save();
 
             $pesanan->map(function($item)use($t){
@@ -119,13 +144,15 @@ class PesananController extends Controller
                 return $item;
             });
             
-            $transaksi = $t;
-            $detailTransaksi = $t->detailTransaksi;
+            Meja::find($req->meja_id)->update([
+                'status' => 1,
+                'users_id' => Auth::user()->id,
+            ]);
             
             
             DB::commit();
 
-            return redirect('/pesanan/selesai');
+            return redirect('/home');
         } catch (\Exception $e) {
             
             DB::rollback();
