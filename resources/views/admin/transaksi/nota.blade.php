@@ -86,5 +86,6 @@
 			<td class="auto-style4" style="text-align: center">{{number_format($data->pembayaran->kembalian)}}</td>
 		</tr>
 	</table>
+    //----------Terima Kasih----------//
 </body>
 </html>
