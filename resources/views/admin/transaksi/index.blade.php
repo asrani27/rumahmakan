@@ -69,6 +69,58 @@
       <!-- /.card -->
     </div>
     <!-- /.col -->
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Data Transaksi Yang Sudah Bayar</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <table id="example1" class="table table-bordered table-sm">
+          <thead>
+          <tr>
+            <th>No</th>
+            <th>Tanggal & Jam</th>
+            <th>Nama</th>
+            <th>Nomor Meja</th>
+            <th>Total</th>
+            <th>Bayar</th>
+            <th>Kembalian</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+              @php
+                  $no =1;
+              @endphp
+              @foreach ($riwayat as $item)
+                  <tr>
+                  <td>{{$no++}}</td>
+                  <td>{{\Carbon\Carbon::parse($item->created_at)->format('d-M-Y H:i:s')}}</td>
+                  <td>{{$item->nama_pembeli}}</td>
+                  <td>{{$item->meja->nama}}</td>
+                  <td>{{number_format($item->pembayaran->total)}}</td>
+                  <td>{{number_format($item->pembayaran->bayar)}}</td>
+                  <td>{{number_format($item->pembayaran->kembalian)}}</td>
+                
+                  <td>
+                      <a href="/admin/transaksi/{{$item->id}}/nota" class="btn btn-xs btn-danger"><i class="fas fa-sticky-note"></i> Struk</a>   
+                    
+                  </td>
+                  </tr>
+              @endforeach
+          </tbody>
+              
+        </table>
+      </div>
+      {{$riwayat->links()}}
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
   </div>
-  <!-- /.row -->
+  <!-- /.col -->
+</div>
 @endsection

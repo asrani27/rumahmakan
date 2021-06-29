@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Aduan;
 use App\Models\Pegawai;
 use App\Models\Kustomer;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class LaporanController extends Controller
 {
-    public function aduan()
+    public function index()
     {
-        return view('admin.lap_aduan');
+        $data = Transaksi::where('status_bayar', 1)->selectRaw('year(created_at) year, monthname(created_at) month, sum(total) total')
+        ->groupBy('year','month')->orderBy('year', 'desc')->get();
+        
+        return view('admin.laporan_transaksi',compact('data'));
     }
     public function pegawai()
     {
@@ -28,30 +33,11 @@ class LaporanController extends Controller
     }
 
     
-    public function printaduan()
+    public function cetak()
     {
-        $data = Aduan::get();
-        $pdf = PDF::loadView('admin.lap_aduan_pdf',compact('data'))->setPaper('legal','landscape');
-        return $pdf->stream();
-    }
-
-    public function printpegawai()
-    {
-        $data = Pegawai::get();
-        $pdf = PDF::loadView('admin.lap_pegawai_pdf',compact('data'))->setPaper('legal','landscape');
-        return $pdf->stream();
-    }
-    public function printkustomer()
-    {
-        $data = Kustomer::get();
-        $pdf = PDF::loadView('admin.lap_kustomer_pdf',compact('data'))->setPaper('legal','landscape');
-        return $pdf->stream();
-        return view('admin.lap_kustomer_pdf');
-    }
-    public function printsolusi()
-    {
-        $data = Aduan::get();
-        $pdf = PDF::loadView('admin.lap_solusi_pdf',compact('data'))->setPaper('legal','landscape');
+        $data = Transaksi::where('status_bayar', 1)->selectRaw('year(created_at) year, monthname(created_at) month, sum(total) total')
+        ->groupBy('year','month')->orderBy('year', 'desc')->get();
+        $pdf = PDF::loadView('admin.transaksi_pdf',compact('data'))->setPaper('legal','landscape');
         return $pdf->stream();
     }
 }

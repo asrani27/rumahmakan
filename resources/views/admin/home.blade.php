@@ -8,7 +8,7 @@
         <h5 class="card-title"></h5>
 
         <h1 class="card-text text-center">
-         SISTEM INFORMASI KASIR RM. ABI <br/>
+         SISTEM INFORMASI KASIR RM. MAMA CEMARA <br/>
         </h1>
       </div>
     </div>

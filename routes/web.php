@@ -43,9 +43,12 @@ Route::group(['middleware' => ['auth', 'role:kasir']], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/transaksi', [TransaksiController::class, 'index']);
         Route::get('/transaksi/{id}/bayar', [TransaksiController::class, 'bayar']);
+        Route::get('/transaksi/{id}/nota', [TransaksiController::class, 'nota']);
         Route::post('/pembayaran/transaksi/{id}', [TransaksiController::class, 'storeBayar']);
         Route::resource('meja', MejaController::class);
-        Route::resource('makanan', MakananController::class);     
+        Route::resource('makanan', MakananController::class); 
+        Route::get('/laporan', [LaporanController::class, 'index']);    
+        Route::get('/transaksi/cetak', [LaporanController::class, 'cetak']);    
     });
 });
 

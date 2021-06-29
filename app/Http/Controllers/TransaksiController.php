@@ -7,16 +7,25 @@ use App\Models\Transaksi;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class TransaksiController extends Controller
 {
     public function index()
     {
-        $data = Transaksi::orderBy('status_bayar', 'ASC')->get();
+        //$data = Transaksi::orderBy('status_bayar', 'ASC')->get();
+        $riwayat = Transaksi::where('status_bayar', 1)->orderBy('created_at', 'DESC')->paginate(10);
         $meja = Meja::get();
-        return view('admin.transaksi.index',compact('data','meja'));
+        return view('admin.transaksi.index',compact('meja','riwayat'));
     }
 
+    public function nota($id)
+    {
+        $data = Transaksi::find($id);
+        $pdf = PDF::loadView('admin.transaksi.nota',compact('data'))->setPaper(array(20,-30,309.4488,435.433), 'portrait');
+        return $pdf->stream();
+
+    }
     public function bayar($id)
     {
         $checkTransaksi = Transaksi::where('meja_id', $id)->where('status_bayar',0)->first();

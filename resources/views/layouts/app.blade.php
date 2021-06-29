@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>RM </title>
+  <title>RM. MAMA CEMARA </title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/themeadmin/plugins/fontawesome-free/css/all.min.css">
@@ -140,7 +140,7 @@
     <a href="index3.html" class="brand-link navbar-info">
       <img src="/themeadmin/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light text-white"><strong>RM. ABI</strong></span>
+      <span class="brand-text font-weight-light text-white"><strong>RM. MAMA CEMARA</strong></span>
     </a>
 
     <!-- Sidebar -->

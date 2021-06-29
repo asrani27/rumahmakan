@@ -4,10 +4,10 @@
 <head>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>APLIKASI ADUAN</title>
+<title>LAPORAN TRANSAKSI</title>
 <style type="text/css">
 .auto-style1 {
-	font-size: small;
+	font-size: medium;
 }
 .auto-style2 {
 	text-align: center;
@@ -16,15 +16,15 @@
 	border: 1px solid #000000;
 	font-family: Arial, Helvetica, sans-serif;
 
-	font-size: xx-small;
+	font-size: small;
 	text-align: center;
 }
 .auto-style5 {
 	border: 1px solid #000000;
-	font-size: xx-small;	
+	font-size: small;	
 }
 .auto-style4 {
-	font-size: x-small;
+	font-size: small;
 }
 .auto-style6 {
 	border: 1px solid #000000;
@@ -35,14 +35,13 @@
 
 <body>
 
-<p class="auto-style2"><strong><span class="auto-style1">LAPORAN KUSTOMER</span></strong></p>
+<p class="auto-style2"><strong><span class="auto-style1">LAPORAN TRANSAKSI</span></strong></p>
 <table style="width: 100%" cellpadding="2" cellspacing="0" >
 	<tr>
 		<td class="auto-style3"><strong>NO</strong></td>
-		<td class="auto-style3" ><strong>Nama</strong></td>
-		<td class="auto-style3" ><strong>Alamat</strong></td>
-		<td class="auto-style3" ><strong>Telp</strong></td>
-		<td class="auto-style3" ><strong>E-mail</strong></td>
+		<td class="auto-style3" ><strong>Bulan</strong></td>
+		<td class="auto-style3" ><strong>Tahun</strong></td>
+		<td class="auto-style3" ><strong>Total Penghasilan</strong></td>
 	</tr>
         <tbody>
             @php
@@ -51,10 +50,9 @@
             @foreach ($data as $key => $item)   
             <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
                 <td class="auto-style5" style="text-align: center">{{$no++}}</td>
-                <td class="auto-style5" style="text-align: center">{{$item->nama}}</td>
-                <td class="auto-style5" style="text-align: center"> {{$item->alamat}}</td>
-                <td class="auto-style5" style="text-align: center"> {{$item->telp}}</td>
-                <td class="auto-style5" style="text-align: center"> {{$item->email}}</td>
+                <td class="auto-style5" style="text-align: center">{{$item->year}}</td>
+                <td class="auto-style5" style="text-align: center">{{$item->month}}</td>
+                <td class="auto-style5" style="text-align: center">{{number_format($item->total)}}</td>
             </tr>
             @endforeach    
         </tbody>

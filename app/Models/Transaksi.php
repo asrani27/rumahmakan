@@ -25,4 +25,9 @@ class Transaksi extends Model
     {
         return $this->belongsTo(User::class, 'users_id');
     }
+    
+    public function pembayaran()
+    {
+        return $this->hasOne(Pembayaran::class, 'transaksi_id');
+    }
 }
