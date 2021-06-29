@@ -6,7 +6,7 @@ Daftar Makanan Dan Minuman Yang Telah Di Pesan
 
 @section('content')
 <div class="row">
-    <div class="col-lg-12">]
+    <div class="col-lg-12">
         @if ($data==null)
         <a href="/home" class="btn btn-sm btn-info">KEMBALI KE HOME</a>
         @else

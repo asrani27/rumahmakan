@@ -35,14 +35,15 @@
 	</style>
 </head>
 <body>
-    <p class="auto-style1"><strong>RUMAH MAKAN MAMA CEMARA</strong>
+    <p class="auto-style1"><strong>RUMAH MAKAN MAMA CEMARA</strong><br/>
+        Tanggal : {{\Carbon\Carbon::parse($data->created_at)->format('d-M-Y')}}
 	<table style="width: 100%">
 		<tr>
 			<td class="auto-style2" style="width: 130px"><strong>No Transaksi</strong></td>
 			<td class="auto-style6">: TR-{{$data->id}}</td>
 		</tr>
 		<tr>
-			<td class="auto-style2" style="width: 130px"><strong>Nama Pembeli</strong></td>
+			<td class="auto-style2" style="width: 130px"><strong>Nama Pelayan</strong></td>
 			<td class="auto-style6">: {{$data->nama_pembeli}}</td>
 		</tr>
 		<tr>

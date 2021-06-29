@@ -14,7 +14,7 @@ Masukkan Nama Anda Dan Pilih Meja Yang Tersedia
                 <div class="card-body">
                     <div class="card-body">
                         <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">NAMA PELANGGAN</label>
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">NAMA PELAYAN</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="inputEmail3" name="nama" value="{{Auth::user()->name}}" readonly>
                         </div>

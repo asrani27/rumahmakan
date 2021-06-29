@@ -50,8 +50,8 @@
             @foreach ($data as $key => $item)   
             <tr style="font-size:10px; font-family:Arial, Helvetica, sans-serif">
                 <td class="auto-style5" style="text-align: center">{{$no++}}</td>
-                <td class="auto-style5" style="text-align: center">{{$item->year}}</td>
                 <td class="auto-style5" style="text-align: center">{{$item->month}}</td>
+                <td class="auto-style5" style="text-align: center">{{$item->year}}</td>
                 <td class="auto-style5" style="text-align: center">{{number_format($item->total)}}</td>
             </tr>
             @endforeach    

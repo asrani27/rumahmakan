@@ -39,7 +39,7 @@ Masukkan Username Dan Password Anda..
             <div class="card">
                 <div class="card-body">
                 <p class="card-text">
-                    <a href="/register_pelanggan" class="btn btn-primary btn-block"><strong>Belum pernah Daftar? Klik Disini</strong></a>
+                    <a href="/register_pelanggan" class="btn btn-primary btn-block"><strong>Klik Disini Untuk Daftar</strong></a>
                     
                     <a href="/" class="btn btn-secondary btn-block"><strong>KEMBALI</strong></a>
                 </p>
