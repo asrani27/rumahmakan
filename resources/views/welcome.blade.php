@@ -1,7 +1,7 @@
 @extends('front.app')
 
 @section('title')
-Selamat Datang Di Rumah Makan Abi 
+Selamat Datang Di Rumah Makan MAMA CEMARA 
 @endsection
 
 @section('content')
