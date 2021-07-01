@@ -48,7 +48,8 @@ Route::group(['middleware' => ['auth', 'role:kasir']], function () {
         Route::resource('meja', MejaController::class);
         Route::resource('makanan', MakananController::class); 
         Route::get('/laporan', [LaporanController::class, 'index']);    
-        Route::get('/transaksi/cetak', [LaporanController::class, 'cetak']);    
+        Route::get('/transaksi/cetak', [LaporanController::class, 'cetak']);  
+        Route::get('/transaksi/detail/cetak', [LaporanController::class, 'detailcetak']);    
     });
 });
 

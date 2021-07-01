@@ -20,9 +20,15 @@ class MejaController extends Controller
     
     public function store(Request $req)
     {
-        Meja::create($req->all());
-        toastr()->success('Berhasil Di Simpan');
-        return redirect('admin/meja');   
+        $check = Meja::where('nama', $req->nama)->first();
+        if($check == null){
+            Meja::create($req->all());
+            toastr()->success('Berhasil Di Simpan');
+            return redirect('admin/meja');     
+        } else{
+            toastr()->error('No Meja Sudah Ada');
+            return back();
+        }
     }
     
     public function edit($id)

@@ -40,4 +40,11 @@ class LaporanController extends Controller
         $pdf = PDF::loadView('admin.transaksi_pdf',compact('data'))->setPaper('legal','landscape');
         return $pdf->stream();
     }
+
+    public function detailcetak()
+    {
+        $data = Transaksi::where('status_bayar', 1)->get();
+        $pdf = PDF::loadView('admin.transaksi2_pdf',compact('data'))->setPaper('legal','landscape');
+        return $pdf->stream();
+    }
 }

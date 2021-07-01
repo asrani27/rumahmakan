@@ -4,7 +4,10 @@
 <div class="row">
   <div class="col-12">
     
-    <a href="/admin/transaksi/cetak" target="_blank" class="btn btn-danger"><strong><i class="fas fa-th"></i> Cetak</strong></a><br/><br/>
+    <a href="/admin/transaksi/cetak" target="_blank" class="btn btn-danger"><strong><i class="fas fa-th"></i> Cetak Bulanan</strong></a>
+        
+    <a href="/admin/transaksi/detail/cetak" target="_blank" class="btn btn-danger"><strong><i class="fas fa-th"></i> Cetak Transaksi Detail</strong></a>
+    <br/><br/>
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Laporan Transaksi</h3>
