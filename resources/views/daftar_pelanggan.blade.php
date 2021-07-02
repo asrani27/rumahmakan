@@ -8,7 +8,7 @@ Daftar Riwayat Pemesanan, Nama Pelayan : {{Auth::user()->name}}
 <div class="row">
     <div class="col-lg-12">
         <a href="/home/pesansekarang/" class="btn btn-sm btn-info">Tambah Pemesanan</a><br/><br/>
-            <div class="card">
+            <div class="card table-responsive">
                 <div class="card-body">
                     <table class="table table-bordered table-sm table-striped">
                         <thead>                  
